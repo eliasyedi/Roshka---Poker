@@ -12,7 +12,7 @@ public class Poker {
     static public String mano(ArrayList<Carta> cartas){
 
         getTable(cartas);
-
+        System.out.println(tablaRecurrencia);
 
         if(straight() && flush(cartas))
             return "ESCALERA COLOR";
@@ -61,9 +61,9 @@ public class Poker {
 
 
     static private boolean doublePair(){
-        for(int i = 0 ; i<13 ; i++)
+        for(int i = 0 ; i<12 ; i++)
             if(tablaRecurrencia.get(i).intValue()==2)
-                for(int j = i+1 ; j<14 ; j++)
+                for(int j = i+1 ; j<13 ; j++)
                     if(tablaRecurrencia.get(j).intValue() == 2)
                         return true;
 

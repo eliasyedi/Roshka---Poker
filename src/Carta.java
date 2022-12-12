@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+
 
 public class Carta {
-    static private HashMap<String,String> mazo = new HashMap<>(52);
     static private HashMap<Integer , String> cartas = new HashMap<>(13);
     static private ArrayList<String> palos = new ArrayList<>(4);
+    static private ArrayList<String> mazo = new ArrayList<>(52);
     static {
         for(int i = 2 ; i<=9 ; i++)
             cartas.put(i , String.valueOf(i));
@@ -24,16 +24,19 @@ public class Carta {
 
         for(String palo:palos)
             for(int i = 1 ; i<=14 ; i++)
-                mazo.put(cartas.get(i) , palo);
+                mazo.add(cartas.get(i) + palo);
+
     }
     private Integer valor;
     private String palo;
     public Carta(){
+
         do {
             this.palo = palos.get((int) (Math.random() * 4));
             this.valor = (int) (Math.random() * 14 + 1);
-        }while(!mazo.containsKey(cartas.get(this.valor)));
-        mazo.remove(cartas.get(this.valor));
+
+        }while(!mazo.contains(cartas.get(this.valor)+ this.palo));
+        mazo.remove(cartas.get(this.valor)+this.palo);
     }
 
     public Integer getValor(){

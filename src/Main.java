@@ -5,7 +5,7 @@ public class Main {
         ArrayList<Carta> cartas = new ArrayList<>(5);
         for(int i = 0 ; i<5 ; i++)
             cartas.add(new Carta());
-        Poker.mano(cartas);
         System.out.println(cartas);
+        System.out.println(Poker.mano(cartas));
     }
 }

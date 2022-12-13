@@ -47,13 +47,7 @@ public class Carta {
         cantidadCartas--;
     }
 
-    public void setPalo(String palo) {
-        this.palo = palo;
-    }
 
-    public void setValor(Integer valor) {
-        this.valor = valor;
-    }
 
     private void shuffle(){
         for(String palo:palos)

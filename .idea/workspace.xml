@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc10ee4f-7f04-404e-b202-ceeabf068300" name="Changes" comment="final">
-      <change beforePath="$PROJECT_DIR$/src/Carta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Carta.java" afterDir="false" />
-    </list>
+    <list default="true" id="bc10ee4f-7f04-404e-b202-ceeabf068300" name="Changes" comment="final sin setters" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,7 +50,7 @@
       <option name="presentableId" value="Default" />
       <updated>1670864623011</updated>
       <workItem from="1670864623980" duration="11716000" />
-      <workItem from="1670930720724" duration="6719000" />
+      <workItem from="1670930720724" duration="7280000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;commit inicial&quot;">
       <created>1670874020474</created>
@@ -82,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670937091448</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="final sin setters">
+      <created>1670937527031</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1670937527031</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +97,7 @@
     <MESSAGE value="&quot;commit inicial&quot;" />
     <MESSAGE value="alpha" />
     <MESSAGE value="final" />
-    <option name="LAST_COMMIT_MESSAGE" value="final" />
+    <MESSAGE value="final sin setters" />
+    <option name="LAST_COMMIT_MESSAGE" value="final sin setters" />
   </component>
 </project>

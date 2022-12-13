@@ -38,6 +38,9 @@ public class Poker {
     private Carta cartaAlta(ArrayList<Carta> cartas){
         int nroCarta = cartas.get(0).getValor().intValue();
         Carta carta = cartas.get(0);
+        if(nroCarta == 0)
+            return carta;
+
         for(int i = 1 ; i<5 ; i++){
             if(nroCarta<cartas.get(i).getValor().intValue()){
                 nroCarta = cartas.get(i).getValor().intValue();

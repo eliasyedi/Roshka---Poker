@@ -1,21 +1,28 @@
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class Carta {
-    static private HashMap<Integer , String> cartas = new HashMap<>(13);
-    static private ArrayList<String> palos = new ArrayList<>(4);
-    static private ArrayList<String> mazo = new ArrayList<>(52);
-    static {
-        for(int i = 2 ; i<=9 ; i++)
-            cartas.put(i , String.valueOf(i));
+    static int cantidadCartas = 52 , cantidadJugadores;
 
-        cartas.put(1 , "A");
-        cartas.put(10, "T");
-        cartas.put(11, "J");
-        cartas.put(12, "Q");
-        cartas.put(13, "K");
-        cartas.put(14 , "A");
+    static private ArrayList<String> cartas = new ArrayList<>(13);
+    static private ArrayList<String> palos = new ArrayList<>(4);
+    static private HashMap<String, Boolean> mazo = new HashMap<>(52);
+    static {
+        cartas.add("A");
+        cartas.add("2");
+        cartas.add("3");
+        cartas.add("4");
+        cartas.add("5");
+        cartas.add("6");
+        cartas.add("7");
+        cartas.add("8");
+        cartas.add("9");
+        cartas.add("T");
+        cartas.add("J");
+        cartas.add("Q");
+        cartas.add("K");
 
         palos.add("S");
         palos.add("D");
@@ -23,22 +30,36 @@ public class Carta {
         palos.add("H");
 
         for(String palo:palos)
-            for(int i = 1 ; i<=14 ; i++)
-                mazo.add(cartas.get(i) + palo);
+            for(int i = 0 ; i<13 ; i++)
+                mazo.put(cartas.get(i) + palo, Boolean.TRUE);
 
     }
     private Integer valor;
     private String palo;
     public Carta(){
-
+        if(cantidadCartas<5)
+            shuffle();
         do {
             this.palo = palos.get((int) (Math.random() * 4));
-            this.valor = (int) (Math.random() * 14 + 1);
-
-        }while(!mazo.contains(cartas.get(this.valor)+ this.palo));
-        mazo.remove(cartas.get(this.valor)+this.palo);
+            this.valor = (int) (Math.random() * 13 );
+        }while(!(mazo.get(cartas.get(this.valor) + this.palo)).booleanValue());
+        mazo.put(cartas.get(this.valor) + this.palo, Boolean.FALSE);
+        cantidadCartas--;
     }
 
+    public void setPalo(String palo) {
+        this.palo = palo;
+    }
+
+    public void setValor(Integer valor) {
+        this.valor = valor;
+    }
+
+    private void shuffle(){
+        for(String palo:palos)
+            for(int i = 0 ; i<13 ; i++)
+                mazo.put(cartas.get(i) + palo, Boolean.TRUE);
+    }
     public Integer getValor(){
         return this.valor;
     }
@@ -53,8 +74,7 @@ public class Carta {
         if(objeto == this)
             return true;
         if(objeto instanceof Carta)
-            if( ((Carta) objeto).getValor() == this.valor && ((Carta) objeto).getPalo().equals(palo))
-                return true;
+            return ((Carta) objeto).getValor() == this.valor && ((Carta) objeto).getPalo().equals(palo);
         return false;
     }
 
@@ -62,7 +82,7 @@ public class Carta {
 
     @Override
     public String toString(){
-        return cartas.get(valor) + this.palo;
+        return cartas.get(this.valor) + this.palo;
     }
 
 

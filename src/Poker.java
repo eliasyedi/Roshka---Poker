@@ -2,17 +2,19 @@ import java.util.ArrayList;
 
 
 public class Poker {
-    static private ArrayList<Integer> tablaRecurrencia = new ArrayList<>(14);
-    static{
+    private ArrayList<Integer> tablaRecurrencia ;
+
+
+    public Poker(){
+        this.tablaRecurrencia = new ArrayList<>(14);
         for(int i = 0 ; i<14 ; i++)
             tablaRecurrencia.add(0);
     }
 
-
-    static public String mano(ArrayList<Carta> cartas){
+    public String mano(ArrayList<Carta> cartas){
 
         getTable(cartas);
-        System.out.println(tablaRecurrencia);
+        System.out.println("tabla: " + tablaRecurrencia);
 
         if(straight() && flush(cartas))
             return "ESCALERA COLOR";
@@ -31,18 +33,29 @@ public class Poker {
         if(pair())
             return "PAR";
 
-        return "CARTA ALTA";
+        return "CARTA ALTA:  " + cartaAlta(cartas);
+    }
+    private Carta cartaAlta(ArrayList<Carta> cartas){
+        int nroCarta = cartas.get(0).getValor().intValue();
+        Carta carta = cartas.get(0);
+        for(int i = 1 ; i<5 ; i++){
+            if(nroCarta<cartas.get(i).getValor().intValue()){
+                nroCarta = cartas.get(i).getValor().intValue();
+                carta = cartas.get(i);
+            }
+        }
+
+        return carta;
     }
 
-
-    static private boolean pair(){
+    private boolean pair(){
         for(Integer a: tablaRecurrencia)
             if(a.intValue() ==2)
                 return true;
         return false;
     }
 
-    static private boolean triple(){
+    private boolean triple(){
         for(Integer a: tablaRecurrencia)
             if(a.intValue() == 3)
                 return true;
@@ -51,16 +64,17 @@ public class Poker {
     }
 
 
-    static private boolean flush(ArrayList<Carta> cartas){
+    private boolean flush(ArrayList<Carta> cartas){
+        String palo = cartas.get(0).getPalo();
         for(Carta c:cartas)
-            if(!c.getPalo().equals(cartas.get(0)))
+            if(!c.getPalo().equals(palo))
                 return false;
 
         return true;
     }
 
 
-    static private boolean doublePair(){
+    private boolean doublePair(){
         for(int i = 0 ; i<12 ; i++)
             if(tablaRecurrencia.get(i).intValue()==2)
                 for(int j = i+1 ; j<13 ; j++)
@@ -73,20 +87,7 @@ public class Poker {
 
 
 
-    static private void getTable(ArrayList<Carta> cartas){
-        int nro = 0 ;
-        for(Carta c: cartas){
-            if( (nro = c.getValor().intValue()) == 1 || nro == 14){
-                tablaRecurrencia.set(0 , tablaRecurrencia.get(0) + 1);
-                tablaRecurrencia.set(13 , tablaRecurrencia.get(13) + 1);
-            }
-            else
-                tablaRecurrencia.set(nro-1 , tablaRecurrencia.get(nro-1) + 1);
-        }
-
-    }
-
-    static private boolean straight(){
+    private boolean straight(){
         int nroConsecutivo = 0;
         for(int i = 0 ; i<14 ; i++) {
             if (tablaRecurrencia.get(i).intValue() > 1)
@@ -102,7 +103,7 @@ public class Poker {
         return false;
     }
 
-    static private boolean poker(){
+    private boolean poker(){
         for(Integer recurrencia: tablaRecurrencia)
             if(recurrencia.intValue() == 4)
                 return true;
@@ -110,7 +111,7 @@ public class Poker {
         return false;
     }
 
-    static private boolean full(){
+    private boolean full(){
 
         for(Integer recurrencia: tablaRecurrencia)
             if(recurrencia.intValue() ==3)
@@ -122,5 +123,21 @@ public class Poker {
     }
 
 
+
+    private void getTable(ArrayList<Carta> cartas){
+        for (int i = 0 ; i<14 ; i++)
+            this.tablaRecurrencia.set(i , 0);
+
+        int nro = 0 ;
+        for(Carta c: cartas){
+            nro = c.getValor().intValue();
+            if( nro == 0){
+                tablaRecurrencia.set(0 , tablaRecurrencia.get(0) + 1);
+                tablaRecurrencia.set(13 , tablaRecurrencia.get(13) + 1);
+            }else
+                tablaRecurrencia.set(nro , tablaRecurrencia.get(nro) + 1);
+        }
+
+    }
 
 }
